@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urim Joseph — Full Stack Web Developer</title>
+<meta name="description" content="Urim Joseph is a Full Stack Web Developer building modern, responsive web applications with HTML, CSS, JavaScript, React and Next.js.">
+<meta name="theme-color" content="#050816">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#hero" class="brand">
+      <span class="brand-badge">UJ</span>
+      <p class="brand-text">
+        Urim Joseph
+        <span class="brand-sub">| Full Stack Web Developer</span>
+      </p>
+    </a>
+
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#work" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#contact" class="btn btn-primary btn-hire">Hire Me</a>
+    </div>
+
+    <div class="menu-toggle-wrap">
+      <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle" class="menu-toggle">
+        <span class="menu-bar menu-bar-lg"></span>
+        <span class="menu-bar menu-bar-lg"></span>
+        <span class="menu-bar menu-bar-sm"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu hidden">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#work" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+</nav>
+
+<main id="main-content" class="main">
+
+  <!-- HERO -->
+  <section id="hero" class="hero hero-pattern">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-text-group">
+        <div class="hero-line-wrap">
+          <div class="hero-dot"></div>
+          <div class="hero-line"></div>
+        </div>
+
+        <div class="hero-text reveal">
+          <span class="badge">Open to freelance &amp; remote work</span>
+          <h1 class="hero-title">
+            Hi, I'm <span class="text-gradient">Urim Joseph</span>
+          </h1>
+          <p class="hero-subtitle">
+            A Full Stack Web Developer who builds clean, responsive web applications —
+            from polished interfaces to the systems that power them underneath.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" style="animation-delay:0.3s">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="terminal-path">~/urim-joseph</span>
+          </div>
+          <div class="terminal-body">
+            <img src="images/photo.png" alt="Urim Joseph" class="terminal-photo">
+            <p><span class="t-kw">const</span> <span class="t-var">myProfile</span> = {</p>
+            <p class="t-indent"><span class="t-key">name</span>: <span class="t-str">"Urim Joseph"</span>,</p>
+            <p class="t-indent"><span class="t-key">role</span>: <span class="t-str">"Full Stack Web Developer"</span>,</p>
+            <p class="t-indent"><span class="t-key">stack</span>: [<span class="t-str">"HTML"</span>, <span class="t-str">"CSS"</span>, <span class="t-str">"JavaScript"</span>, <span class="t-str">"React"</span>, <span class="t-str">"Next.js"</span>],</p>
+            <p class="t-indent"><span class="t-key">focus</span>: <span class="t-str">"Clean, reliable web apps"</span>,</p>
+            <p class="t-indent"><span class="t-key">available</span>: <span class="t-bool">true</span></p>
+            <p>};</p>
+            <p><span class="t-cursor"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <a href="#about" aria-label="Scroll to About section">
+        <div class="scroll-pill">
+          <div class="scroll-dot"></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section section-fade">
+    <p class="eyebrow">Get to know me</p>
+    <h2 class="section-title">About.</h2>
+
+    <p class="section-desc about-desc">
+      I'm Urim Joseph, a Full Stack Web Developer who enjoys turning ideas into fast,
+      functional products that people actually want to use. I work across the stack,
+      building interfaces with HTML, CSS, and React,
+      then connecting them with JavaScript and Next.js to make everything work together smoothly.
+      I care about clean code, thoughtful design, and clear communication,
+      and I'm looking to bring those skills to freelance and remote projects.
+    </p>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section section-fade">
+    <p class="eyebrow">What I can do for you</p>
+    <h2 class="section-title">Services.</h2>
+    <p class="section-desc">
+      Full-stack web development, end to end — from the first wireframe to a live, working site.
+    </p>
+
+    <div id="services-grid" class="services-grid"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section section-fade">
+    <p class="eyebrow">My toolbox</p>
+    <h2 class="section-title">Skills.</h2>
+    <p class="section-desc">
+      Tools and languages I build with today. This list grows as I pick up new ones 
+    </p>
+
+    <div id="skills-grid" class="skills-grid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="work" class="section section-fade">
+    <p class="eyebrow">What I've built</p>
+    <h2 class="section-title">Projects.</h2>
+    <p class="section-desc">
+      Following projects showcase my skills and experience through real-world examples
+      of my work. Each one is a small case study — problem, approach, and result.
+    </p>
+
+    <div id="projects-grid" class="projects-grid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-fade">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="section-title contact-title">Contact.</h2>
+
+        <a href="mailto:urimuwem@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          urimuwem@gmail.com
+        </a>
+
+        <a href="tel:+2348174334377" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +234 817 433 4377
+        </a>
+
+        <form id="contact-form" class="contact-form">
+          <label class="form-group">
+            <span class="form-label">Your Name</span>
+            <input type="text" name="name" required placeholder="What's your name?" class="form-input">
+          </label>
+          <label class="form-group">
+            <span class="form-label">Your Email</span>
+            <input type="email" name="email" required placeholder="What's your email?" class="form-input">
+          </label>
+          <label class="form-group">
+            <span class="form-label">Your Message</span>
+            <textarea rows="5" name="message" required placeholder="What do you want to say?" class="form-input form-textarea"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-send">Send</button>
+          <p id="form-status" class="form-status hidden"></p>
+        </form>
+      </div>
+
+      <div class="contact-side">
+        <p class="contact-side-text">
+          Have a project in mind, or just want to say hello? My inbox is always open. 
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3 class="footer-name">Urim Joseph</h3>
+        <p class="footer-role">Full Stack Web Developer</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about" class="footer-link">About</a>
+        <a href="#services" class="footer-link">Services</a>
+        <a href="#skills" class="footer-link">Skills</a>
+        <a href="#work" class="footer-link">Projects</a>
+        <a href="#contact" class="footer-link">Contact</a>
+      </div>
+      <p class="footer-email">urimuwem@gmail.com</p>
+    </div>
+    <p class="footer-copy">&copy; <span id="year"></span> Urim Joseph. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
