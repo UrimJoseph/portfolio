@@ -58,6 +58,14 @@ const services = [
 /* Add a new project by copying this shape. Leave `link` as "#" until the
    project has a live URL or repo to point to. */
 const projects = [
+{
+    title: "Aura Studio",
+    desc: "A responsive one-page landing site that keeps a creative studio visible and reachable while its main website is being built, with an About section, services and a contact form.",
+    tags: ["React", "Next.js"],
+    link: "https://aura-studio-phi-self.vercel.app/",
+    image: "images/aura-studio.png",
+  },
+  
   {
     title: "More Projects Coming Soon",
     desc: "I'm actively building new full-stack projects with React and Next.js. Check back soon, or reach out to see what I'm currently working on.",
@@ -123,17 +131,35 @@ function renderProjects() {
       const tags = (p.tags || [])
         .map((t) => `<span class="tag">${t}</span>`)
         .join("");
+
+      // Real websites open in a new tab; in-page links (like #contact) don't.
+      const external = /^https?:/.test(p.link || "");
+      const linkAttrs = external ? 'target="_blank" rel="noopener noreferrer"' : "";
+
+      const folderSvg = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${iconPaths.folder}</svg>`;
+
+      // Preview image: use `image` if given (your own screenshot). If the
+      // image is missing or fails to load, fall back to the folder icon.
+      const thumb = p.image
+        ? `<img src="${p.image}" alt="${p.title} preview" loading="lazy" class="project-img">`
+        : folderSvg;
+
       return `
-      <a href="${p.link || "#"}" class="project-card ${p.placeholder ? "border-dashed" : ""}">
-        <div class="project-thumb">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${iconPaths.folder}</svg>
-        </div>
+      <a href="${p.link || "#"}" ${linkAttrs} class="project-card ${p.placeholder ? "border-dashed" : ""}">
+        <div class="project-thumb">${thumb}</div>
         <h3 class="project-title">${p.title}</h3>
         <p class="project-desc">${p.desc}</p>
         <div class="project-tags">${tags}</div>
       </a>`;
     })
     .join("");
+
+  // If a preview image can't load, swap in the folder icon instead.
+  grid.querySelectorAll(".project-img").forEach((img) => {
+    img.addEventListener("error", () => {
+      img.parentElement.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${iconPaths.folder}</svg>`;
+    });
+  });
 }
 
 /* ============================ INTERACTIVITY ============================ */
@@ -190,9 +216,9 @@ function setupContactForm() {
   const status = document.getElementById("form-status");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+    const name = form.elements.name.value.trim();
+    const email = form.elements.email.value.trim();
+    const message = form.elements.message.value.trim();
 
     // No backend is connected yet, so this opens the visitor's email app with
     // the message pre-filled to urimuwem@gmail.com. To collect messages
@@ -211,7 +237,7 @@ function setupNavbarBackground() {
   const nav = document.getElementById("navbar");
   window.addEventListener("scroll", () => {
     nav.classList.toggle("shadow-lg", window.scrollY > 20);
-  });
+  }, { passive: true });
 }
 
 /* Types out the terminal card's existing lines character-by-character, as if
@@ -262,8 +288,7 @@ function setupTerminalTyping() {
           return;
         }
         charIndex++;
-        if (isElement) el.textContent = text.slice(0, charIndex);
-        else el.textContent = text.slice(0, charIndex);
+        el.textContent = text.slice(0, charIndex);
         setTimeout(typeChar, CHAR_SPEED);
       })();
     }
