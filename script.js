@@ -67,6 +67,14 @@ const projects = [
   },
   
   {
+    title: "Bright Edge",
+    desc: "A simple task management tool that helps teams organize daily tasks, track completion, and remove unnecessary tasks, with data saved locally to persist after browser refreshes.",
+    tags: ["React", "Next.js"],
+    link: "https://orbit-team-opal.vercel.app/",
+    image: "images/bright-edge.png",
+  },
+
+  {
     title: "More Projects Coming Soon",
     desc: "I'm actively building new full-stack projects with React and Next.js. Check back soon, or reach out to see what I'm currently working on.",
     tags: ["In progress"],
@@ -167,13 +175,47 @@ function renderProjects() {
 function setupMobileMenu() {
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-  toggle.addEventListener("click", () => {
-    const isOpen = !menu.classList.contains("hidden");
-    menu.classList.toggle("hidden");
-    toggle.setAttribute("aria-expanded", String(!isOpen));
+
+  function setOpen(open) {
+    menu.classList.toggle("hidden", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+  }
+
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(menu.classList.contains("hidden"));
   });
-  document.querySelectorAll(".mobile-link").forEach((link) => {
-    link.addEventListener("click", () => menu.classList.add("hidden"));
+
+  // Close after picking a link (including the Hire Me button)
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  // Close on outside tap/click, Escape, or when the screen grows to desktop size
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+  window.matchMedia("(min-width: 768px)").addEventListener("change", (e) => {
+    if (e.matches) setOpen(false);
+  });
+}
+
+function setupBackToTop() {
+  const btn = document.getElementById("back-to-top");
+  if (!btn) return;
+  const toggleVisibility = () => {
+    btn.classList.toggle("is-visible", window.scrollY > 400);
+  };
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  toggleVisibility();
+
+  btn.addEventListener("click", () => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
   });
 }
 
@@ -195,7 +237,7 @@ function setupScrollReveal() {
 
 function setupActiveNav() {
   const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-link");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -254,6 +296,9 @@ function setupTerminalTyping() {
   const lines = Array.from(body.querySelectorAll(":scope > p"));
   if (!lines.length) return;
 
+  // Lock the finished height first, so the card doesn't grow while typing.
+  body.style.minHeight = body.getBoundingClientRect().height + "px";
+
   const originals = lines.map((p) => p.cloneNode(true));
   lines.forEach((p) => (p.innerHTML = ""));
 
@@ -262,7 +307,10 @@ function setupTerminalTyping() {
   let lineIndex = 0;
 
   function typeLine() {
-    if (lineIndex >= lines.length) return;
+    if (lineIndex >= lines.length) {
+      body.style.minHeight = ""; // done typing: let it size naturally again
+      return;
+    }
     const target = lines[lineIndex];
     const nodes = Array.from(originals[lineIndex].childNodes);
     let nodeIndex = 0;
@@ -321,6 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupActiveNav();
   setupContactForm();
   setupNavbarBackground();
+  setupBackToTop();
   setupTerminalTyping();
   document.getElementById("year").textContent = new Date().getFullYear();
 });
